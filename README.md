@@ -27,13 +27,74 @@
 
 ### Distance Metrics
 
-| Metric               | Formula                                                  |
-|----------------------|-----------------------------------------------------------|
-| **Euclidean**        | `sqrt(sum((Ai - Bi)^2))`                                  |
-| **Manhattan**        | `sum(|Ai - Bi|)`                                          |
-| **Chebyshev**        | `max(|Ai - Bi|)`                                          |
-| **Minkowski**        | `(sum(|Ai - Bi|^p))^(1/p)`                                |
-| **Cosine Similarity**| `(sum(Ai * Bi)) / (sqrt(sum(Ai^2)) * sqrt(sum(Bi^2)))`    |
+**Euclidean**        :\
+$\text{Distance}(A, B) = \sqrt{\sum_{i=1}^{n}(A_i - B_i)^2}$                                                                   
+
+**Manhattan**        :\
+$\text{Distance}(A, B) = \sum_{i=1}^{n} \left| A_i - B_i \right|$                                                                 
+
+**Chebyshev**        :\
+$\text{Distance}(A, B) = \max_{i=1}^{n} \left| A_i - B_i \right|$                                                              
+
+**Minkowski**        :\
+$\text{Distance}(A, B) = \left( \sum_{i=1}^{n} \left| A_i - B_i \right|^p \right)^{\frac{1}{p}}$                               
+
+**Cosine Similarity** :\
+$\text{Similarity}(A, B) = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \cdot \sqrt{\sum_{i=1}^{n} B_i^2}}$       
+
+---
+
+## 🔧 Common Parameters, Attributes, and Methods
+
+### Parameters (in `sklearn.neighbors.KNeighborsClassifier` / `KNeighborsRegressor`)
+
+| Parameter         | Description |
+|------------------|-------------|
+| `n_neighbors`      | Number of neighbors to use (K). |
+| `weights`          | Weight function: `'uniform'` or `'distance'`. |
+| `algorithm`        | Search algorithm: `'auto'`, `'ball_tree'`, `'kd_tree'`, `'brute'`. |
+| `metric`           | Distance metric: `'minkowski'`, `'euclidean'`, `'manhattan'`, etc. |
+| `p`                | Power parameter for Minkowski metric (1 = manhattan, 2 = euclidean). |
+
+### Attributes (after fitting)
+
+| Attribute          | Description |
+|-------------------|-------------|
+| `classes_`         | Class labels (for classifier). |
+| `effective_metric_`| Actual distance metric used. |
+| `n_features_in_`   | Number of input features. |
+
+### Methods
+
+| Method             | Description |
+|-------------------|-------------|
+| `fit(X, y)`        | Store training data. |
+| `predict(X)`       | Predict class or value for test data. |
+| `predict_proba(X)` | Predict class probabilities (classifier). |
+| `kneighbors(X)`    | Find K-nearest neighbors for `X`. |
+| `score(X, y)`      | Return accuracy or \( R^2 \) score. |
+
+---
+
+## 📏 Evaluation Metrics
+
+### For Classification
+
+| Metric       | Description |
+|--------------|-------------|
+| Accuracy     | Proportion of correct predictions. |
+| Precision    | How many predicted positives were correct. |
+| Recall       | How many actual positives were correctly predicted. |
+| F1 Score     | Harmonic mean of precision and recall. |
+| Confusion Matrix | Shows true vs predicted class counts. |
+
+### For Regression
+
+| Metric       | Description |
+|--------------|-------------|
+| Mean Squared Error (MSE) | Average squared prediction error. |
+| Mean Absolute Error (MAE) | Average absolute error. |
+| \( R^2 \) Score           | Proportion of variance explained. |
 
 ---
 
